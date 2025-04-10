@@ -1,4 +1,4 @@
-FROM node:20.2.0-alpine3.17 AS build
+FROM node:22.14.0-alpine3.20 AS build
 
 WORKDIR /app
 COPY source ./source
@@ -8,7 +8,7 @@ COPY tsconfig.json ./
 RUN npm ci --silence
 RUN npm run bundle:compile
 
-FROM node:20.2.0-alpine3.17
+FROM node:22.14.0-alpine3.20
 
 WORKDIR /app
 COPY --from=build /app/build ./build
